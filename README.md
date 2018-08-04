@@ -28,3 +28,7 @@ npm run watch
 # start the server in another cli window
 php artisan serve
 ```
+
+### Tasks 
+1. Added seeder and migrations for users and survey table. Password Reset, use any email with 123456 to login.
+ 

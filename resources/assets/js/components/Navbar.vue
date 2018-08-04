@@ -4,13 +4,20 @@
       <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand">
         {{ appName }}
       </router-link>
-
+      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false">
         <span class="navbar-toggler-icon"/>
       </button>
 
       <div id="navbarToggler" class="collapse navbar-collapse">
+        
+        
         <ul class="navbar-nav">
+          <li class="nav-item active">
+        <router-link to="surveys" class="nav-link">
+        {{ $t('surveys') }}
+      </router-link>
+      </li>
           <locale-dropdown/>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>

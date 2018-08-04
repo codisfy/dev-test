@@ -1,6 +1,7 @@
 <template>
   <card :title="$t('home')">
-    {{ $t('you_are_logged_in') }}
+    <h2>{{ $t('all_users') }}</h2>
+    <br/>
      <div class="ui container">
       <my-vuetable></my-vuetable>
     </div>
