@@ -20,7 +20,7 @@
 - `yarn install`
 
 
-#### Development
+### Setup
 
 ```bash
 # build and watch
@@ -31,4 +31,20 @@ php artisan serve
 
 ### Tasks 
 1. Added seeder and migrations for users and survey table. Password Reset, use any email with 123456 to login.
- 
+2. Makes Use of laravel datatables, VueJS, Bootstrap4 and other vue packages. 
+3. Added survey listing with option to add multiple user to each survey. 
+
+### Remaining Items.
+Since I was more focused on fininshing the functionality. Given more time the quality of the system could have been much better. 
+Following are the list of items I would like to improve
+1. Validations and sanity checks. 
+2. Vuex was not utilized. 
+3. Delete functionality is hackish.
+4. Overall design could have been improved. 
+5. Pagination on datatables.
+
+
+### Demo Video
+
+Just in case code setup doesn't work. 
+[Video](https://youtu.be/b2JKgUt6XSk)

@@ -1,8 +1,16 @@
 <template>
     <div class="custom-actions">
-      <button class="btn btn-sm btn-outline-light text-dark" @click="itemAction('view-item', rowData, rowIndex)"><fa icon="eye" /></button>
-      <button class="btn btn-sm btn-outline-light text-dark" @click="itemAction('edit-item', rowData, rowIndex)"><fa icon="edit" /></button>
-      <button class="btn btn-sm btn-outline-light text-dark" @click="itemAction('delete-item', rowData, rowIndex)"><fa icon="trash" /></button>
+        
+       <router-link :to="'/surveys/' + rowData['id'] + '/view'">
+           <fa icon="eye" />
+       </router-link>
+       <router-link :to="'/surveys/' + rowData['id'] + '/edit'">
+           <fa icon="edit" />
+       </router-link>
+      <router-link :to="'/surveys/' + rowData['id'] + '/delete'">
+           <fa icon="trash" />
+       </router-link>
+     
     </div>
   </template>
 

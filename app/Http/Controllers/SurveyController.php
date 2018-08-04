@@ -41,7 +41,12 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $survey = new Survey;
+
+        $survey->name = $request->input('name');;
+
+        $survey->save();
+        $survey->users()->sync($request->input('users'));
     }
 
     /**
@@ -52,7 +57,9 @@ class SurveyController extends Controller
      */
     public function show($id)
     {
-        //
+        $surveys = Survey::with(['users:id,name'])->where('id',$id)->first();
+        return response()
+            ->json($surveys);
     }
 
     /**
@@ -63,7 +70,7 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**
@@ -75,7 +82,12 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $survey = Survey::find($id);
+        
+        $survey->name = $request->input('name');;
+
+        $survey->save();
+        $survey->users()->sync($request->input('users'));
     }
 
     /**
@@ -86,6 +98,6 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Survey::destroy($id);
     }
 }

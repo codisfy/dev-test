@@ -36,9 +36,11 @@
   "all_surveys": "All Surveys",
   "add_survey": "Add Survey",
   "edit_survey": "Edit Survey",
+  "view_survey": "Survey Details",
   "survey_updated" : "Survey Updated", 
   "survey_added" : "Survey Added", 
   "users": "Users", 
+  "edit_survey": "Edit Survey", 
   "add": "Add"
 
 }

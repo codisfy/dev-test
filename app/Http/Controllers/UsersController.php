@@ -17,15 +17,16 @@ class UsersController extends Controller
      */
     public function __invoke(Request $request)
     {
-       
+        
+        $users = User::select(['id','name','email','address', 'created_at','updated_at']);
         $sort = $request->query('sort');
         
-        $dataTables = DataTables::of(User::query());
+        $dataTables = DataTables::of($users);
         if ($sort) {
             //Todo need a better way to do this
             $sort = explode('|', $request->query('sort'));
            
-            $dataTables->orderColumn('name', 'email asc');#->orderColumn($sort[0], implode(' ', $sort));
+            $dataTables->order(function($query) use ($sort) { $query->orderBy($sort[0], $sort[1]);});
         }
 
         return $dataTables->make();

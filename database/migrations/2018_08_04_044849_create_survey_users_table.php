@@ -14,7 +14,6 @@ class CreateSurveyUsersTable extends Migration
     public function up()
     {
         Schema::create('survey_user', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('survey_id');
             $table->integer('user_id');
             $table->timestamps();

@@ -14,6 +14,8 @@ const Surveys = () => import('~/pages/surveys/index').then(m => m.default || m)
 const SurveysList = () => import('~/pages/surveys/list').then(m => m.default || m)
 const SurveysAdd = () => import('~/pages/surveys/add').then(m => m.default || m)
 const SurveysEdit = () => import('~/pages/surveys/edit').then(m => m.default || m)
+const SurveysView = () => import('~/pages/surveys/view').then(m => m.default || m)
+const SurveysDelete = () => import('~/pages/surveys/delete').then(m => m.default || m)
 
 
 export default [
@@ -36,8 +38,11 @@ export default [
     { path: '/surveys',
     component: Surveys,
     children: [
-      { path: '', name: 'surveys.list', component: SurveysList },
+      { path: '', redirect: { name: 'surveys.list' } },
+      { path: 'list', name: 'surveys.list', component: SurveysList },
       { path: ':id/edit', name: 'surveys.edit', component: SurveysEdit },
+      { path: ':id/view', name: 'surveys.view', component: SurveysView },
+      { path: ':id/delete', name: 'surveys.delete', component: SurveysDelete },
       { path: 'new', name: 'surveys.add', component: SurveysAdd }
     ] },  
 

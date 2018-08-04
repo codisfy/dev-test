@@ -26,7 +26,7 @@ export default {
     vuetable() {
       return {
         'apiUrl': 'api/users', 
-        'fields' : ['name', 'email', 'address']
+        'fields' : [{name:'name', sortField:'name'}, 'email', 'address']
       }
     }
   }

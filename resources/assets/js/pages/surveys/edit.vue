@@ -1,23 +1,29 @@
 <template>
-  <card :title="$t('your_password')">
+  <card :title="$t('edit_survey')">
     <form @submit.prevent="update" @keydown="form.onKeydown($event)">
-      <alert-success :form="form" :message="$t('password_updated')"/>
+      <alert-success :form="form" :message="$t('survey_updated')"/>
 
       <!-- Password -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('new_password') }}</label>
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
         <div class="col-md-7">
-          <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-          <has-error :form="form" field="password"/>
+          <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
+          <has-error :form="form" field="name"/>
         </div>
       </div>
 
       <!-- Password Confirmation -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('confirm_password') }}</label>
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('users') }}</label>
         <div class="col-md-7">
-          <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
-          <has-error :form="form" field="password_confirmation"/>
+          <vue-tags-input
+              v-model="tag"
+              :tags="tags"
+              :autocomplete-items="autocompleteItems"
+              :add-only-from-autocomplete="true"
+              placeholder="Add Users"
+            @tags-changed="newTags => tags = newTags"
+          />
         </div>
       </div>
 
@@ -33,27 +39,59 @@
 
 <script>
 import Form from 'vform'
+import VueTagsInput from '@johmun/vue-tags-input';
+import axios from 'axios';
 
 export default {
   scrollToTop: false,
 
   metaInfo () {
-    return { title: this.$t('settings') }
+    return { title: this.$t('surveys') }
   },
 
   data: () => ({
     form: new Form({
-      password: '',
-      password_confirmation: ''
-    })
+      name: '',
+      users: []
+    }), 
+    tag: '',
+    tags: [],
+    autocompleteItems: [],
+    debounce: null,
   }),
-
+  mounted() {
+    axios.get('/api/users').then(response => {
+          this.autocompleteItems = response.data.data.map(a => {
+            return { text: a.name, id: a.id };
+          });
+        }).catch(() => console.warn('Oh. Something went wrong'));
+    let id = this.$router.history.current.params.id;
+    axios.get('/api/surveys/' + id).then(response => {
+          this.tags = response.data.users.map(a => {
+            return { text: a.name, id: a.id };
+          });
+          this.form.name = response.data.name;
+        }).catch(() => console.warn('Oh. Something went wrong'));    
+        
+  }, 
   methods: {
     async update () {
-      await this.form.patch('/api/settings/password')
-
-      this.form.reset()
+      let userIds = this.tags.map(tag => {
+        return tag.id;
+      })
+      let id = this.$router.history.current.params.id;
+      await axios.put('/api/surveys/' + id, {
+        name: this.form.name,
+        users: userIds
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      this.form.successful = true;
     }
+  },
+  components: {
+    VueTagsInput
   }
 }
 </script>
