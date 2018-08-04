@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::get('/users', 'UsersController');
+    Route::resource('surveys', 'SurveyController');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

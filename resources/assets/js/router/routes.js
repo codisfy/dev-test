@@ -10,6 +10,12 @@ const Settings = () => import('~/pages/settings/index').then(m => m.default || m
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
 
+const Surveys = () => import('~/pages/surveys/index').then(m => m.default || m)
+const SurveysList = () => import('~/pages/surveys/list').then(m => m.default || m)
+const SurveysAdd = () => import('~/pages/surveys/add').then(m => m.default || m)
+const SurveysEdit = () => import('~/pages/surveys/edit').then(m => m.default || m)
+
+
 export default [
   { path: '/', name: 'welcome', component: Welcome },
 
@@ -26,6 +32,14 @@ export default [
       { path: 'profile', name: 'settings.profile', component: SettingsProfile },
       { path: 'password', name: 'settings.password', component: SettingsPassword }
     ] },
+
+    { path: '/surveys',
+    component: Surveys,
+    children: [
+      { path: '', name: 'surveys.list', component: SurveysList },
+      { path: ':id/edit', name: 'surveys.edit', component: SurveysEdit },
+      { path: 'new', name: 'surveys.add', component: SurveysAdd }
+    ] },  
 
   { path: '*', component: NotFound }
 ]

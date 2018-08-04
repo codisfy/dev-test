@@ -32,5 +32,13 @@
   "login_with": "Login with",
   "register_with": "Register with",
   "all_users": "All Users",
-  "surveys": "Surveys"
+  "surveys": "Surveys",
+  "all_surveys": "All Surveys",
+  "add_survey": "Add Survey",
+  "edit_survey": "Edit Survey",
+  "survey_updated" : "Survey Updated", 
+  "survey_added" : "Survey Added", 
+  "users": "Users", 
+  "add": "Add"
+
 }

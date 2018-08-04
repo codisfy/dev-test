@@ -1,7 +1,7 @@
 <template>
 <div>
   <vuetable ref="vuetable"
-    api-url="api/users"
+    :api-url="apiUrl"
     :fields="fields"
   ></vuetable>
     <vuetable-pagination ref="pagination"></vuetable-pagination>
@@ -17,15 +17,30 @@ export default {
     Vuetable,
     VuetablePagination
   },
-  data () {
-    return {
-      fields: [
-        {
-          name: 'name', 
-          sortField: 'name'
-        },  'email', 'address'
-      ]
+  props: {
+    apiUrl: {
+      type: String,
+      required: true
+    },
+    fields: {
+      type: Array,
+      required: true
+    },
+    sortOrder: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    appendParams: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    detailRowComponent: {
+      type: String
     }
-  }
+  },
 }
 </script>

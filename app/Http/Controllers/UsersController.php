@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $users = User::select(['id','name','email','address', 'created_at','updated_at']);
+       
         $sort = $request->query('sort');
         
         $dataTables = DataTables::of(User::query());

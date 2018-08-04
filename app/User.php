@@ -37,6 +37,10 @@ class User extends Authenticatable implements JWTSubject
         'photo_url',
     ];
 
+    public function surveys()
+    {
+        return $this->belongsToMany('App\Survey');
+    }
     /**
      * Get the profile photo URL attribute.
      *

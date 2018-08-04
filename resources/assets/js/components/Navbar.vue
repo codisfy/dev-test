@@ -14,7 +14,7 @@
         
         <ul class="navbar-nav">
           <li class="nav-item active">
-        <router-link to="surveys" class="nav-link">
+        <router-link to="/surveys" class="nav-link">
         {{ $t('surveys') }}
       </router-link>
       </li>

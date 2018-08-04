@@ -3,7 +3,9 @@
     <h2>{{ $t('all_users') }}</h2>
     <br/>
      <div class="ui container">
-      <my-vuetable></my-vuetable>
+      <my-vuetable
+      :api-url="vuetable.apiUrl"
+    :fields="vuetable.fields"></my-vuetable>
     </div>
   </card>
   
@@ -17,10 +19,16 @@ export default {
   metaInfo () {
     return { title: this.$t('home') }
   },
-   
   components: {
     MyVuetable
+  }, 
+  computed: {
+    vuetable() {
+      return {
+        'apiUrl': 'api/users', 
+        'fields' : ['name', 'email', 'address']
+      }
+    }
   }
-
 }
 </script>
